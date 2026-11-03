@@ -14,7 +14,7 @@ asmids, = glob_wildcards(config['genomesdir'] + '/{asmid}.fna.gz')
 # WARNING: initially runs the pipeline up to the rule merge_flt
 rule all:
     input:
-        expand('output/mlst/mlst_{asmid}.tsv', asmid=asmids)
+        'output/merged.tsv'
 
 # Rule blastn: for each genome perform a nucletide BLAST search using:
 # - a single-sequence (a fragment of gmk gene) FASTA query file
@@ -112,8 +112,22 @@ rule mlst:
 
 # Rule merge_mlst: join all MLST results files into one using a short Bash
 # script (a list of file path on input)
-# rule merge_mlst:
-    #TODO: implement the rule
+rule merge_mlst:
+    params:
+        mask = rules.mlst.output[0].replace('{asmid}', '*')
+    input:
+        expand(rules.mlst.output, asmid=asmids, allow_missing=True)
+    output:
+        'output/merged.tsv'
+    log:
+        'log/merged.log'
+    shell:
+        '''files=({params.mask})
+           head -1 ${{files[0]}} > {output} 2> {log}
+           for file in "${{files[@]}}"; do
+               tail -n +2 ${{file}}
+           done >> {output} 2>> {log}
+        '''
 
 # Rule unique: from merged BLAST results extract unique merged MLST loci
 # sequences (i.e., one sequence per ST) to a FASTA file
