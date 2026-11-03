@@ -14,7 +14,7 @@ asmids, = glob_wildcards(config['genomesdir'] + '/{asmid}.fna.gz')
 # WARNING: initially runs the pipeline up to the rule merge_flt
 rule all:
     input:
-        expand('output/merge_flt/merged_{asmid}.tsv', asmid=asmids)
+        expand('output/mlst/mlst_{asmid}.tsv', asmid=asmids)
 
 # Rule blastn: for each genome perform a nucletide BLAST search using:
 # - a single-sequence (a fragment of gmk gene) FASTA query file
@@ -89,8 +89,26 @@ rule merge_flt:
         '''
 
 # Rule mlst: perform MLST analysis, one genome at a time
-# rule mlst:
-    #TODO: implement the rule
+rule mlst:
+    conda:
+        'envs/powb-python.yml'
+    input:
+        merge     = rules.merge_flt.output,
+        allelesdb = 'input/alleles.fna',
+        mlstdb = 'input/bigsdb.tsv'
+        
+    output:
+        'output/mlst/mlst_{asmid}.tsv'
+    log:
+        'log/mlst/mlst_{asmid}.log'
+    shell:
+        '''scripts/mlst.py --asmid {wildcards.asmid} \
+                           --allelesdb {input.allelesdb} \
+                           --mlstdb {input.mlstdb} \
+                           --alleles {input.merge} \
+                           --output {output} \
+                           > {log} 2>&1
+        '''
 
 # Rule merge_mlst: join all MLST results files into one using a short Bash
 # script (a list of file path on input)
