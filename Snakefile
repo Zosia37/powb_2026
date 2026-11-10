@@ -14,7 +14,8 @@ asmids, = glob_wildcards(config['genomesdir'] + '/{asmid}.fna.gz')
 # WARNING: initially runs the pipeline up to the rule merge_flt
 rule all:
     input:
-        'output/unique.fna'
+        tree_nw = 'output/tree.newick',
+        tree_png = 'output/tree.png'
 
 # Rule blastn: for each genome perform a nucletide BLAST search using:
 # - a single-sequence (a fragment of gmk gene) FASTA query file
@@ -149,6 +150,24 @@ rule unique:
 
 # Rule tree: take the merged MLST results and extracted merged MLST loci
 # sequences, and then compute and visualise a phylogenetic tree (NJ tree)
-# rule tree:
-    #TODO: implement the rule
+rule tree:
+    conda:
+        'envs/powb-python.yml'
+    input:
+        mlst = 'output/merged.tsv',
+        seqs = 'output/unique.fna'
+        
+    output:
+        tree_nw = 'output/tree.newick',
+        tree_png = 'output/tree.png'
+    log:
+        'log/tree.log'
+    shell:
+        '''scripts/tree.py --mlst {input.mlst} \
+                           --seqs {input.seqs} \
+                           --outtree {output.tree_nw} \
+                           --outvis {output.tree_png} \
+                           > {log} 2>&1
+        '''
+        
 

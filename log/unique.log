@@ -1,17 +1,15 @@
-shape: (10, 3)
-┌─────────────────┬──────┬─────────────────────────────────┐
-│ asmid           ┆ ST   ┆ mergedseq                       │
-│ ---             ┆ ---  ┆ ---                             │
-│ str             ┆ i64  ┆ str                             │
-╞═════════════════╪══════╪═════════════════════════════════╡
-│ GCA_001900005.1 ┆ 72   ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_003546055.1 ┆ 112  ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_001210985.1 ┆ 3316 ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_000601585.1 ┆ 87   ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_000462955.1 ┆ 50   ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_000555485.1 ┆ 3406 ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_901669825.1 ┆ 111  ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_000009645.1 ┆ 5    ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_900070235.1 ┆ 3126 ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-│ GCA_002904425.1 ┆ 3249 ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
-└─────────────────┴──────┴─────────────────────────────────┘
+shape: (8, 3)
+┌────────────┬──────┬─────────────────────────────────┐
+│ asmid      ┆ ST   ┆ mergedseq                       │
+│ ---        ┆ ---  ┆ ---                             │
+│ str        ┆ i64  ┆ str                             │
+╞════════════╪══════╪═════════════════════════════════╡
+│ SRR7169268 ┆ 772  ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
+│ SRR7169136 ┆ 8    ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
+│ SRR7169186 ┆ 30   ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
+│ SRR7169151 ┆ 228  ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
+│ SRR7169199 ┆ 2434 ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
+│ SRR7169172 ┆ 88   ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
+│ SRR7169158 ┆ 2021 ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
+│ SRR7169146 ┆ 22   ┆ TTATTAATCCAACAAGCTAAATCGAACAGT… │
+└────────────┴──────┴─────────────────────────────────┘
