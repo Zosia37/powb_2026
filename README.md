@@ -104,11 +104,7 @@ Drzewo w formacie tekstowym znajduje się w [output/tree.newick](output/tree.new
 
 Na uzyskanym drzewie widocznych jest 8 z 11 typów sekwencyjnych *Staphylococcus aureus* opisanych w tabeli 1 Gordon i wsp. (2017), a wspólne grupowanie ST8 i ST2021 jest zgodne z przypisaniem obu typów do kompleksu klonalnego CC8.
 
-### Zgodność grupowania
-
 Na uzyskanym drzewie ST8 i ST2021 tworzą parę połączoną wspólnym węzłem. W publikacji oba typy należą do tego samego kompleksu klonalnego CC8 i mają ten sam typ spa t008. Grupowanie na drzewie jest więc zgodne z klasyfikacją autorów. Te typy występowały jednak w różnych ogniskach. ST8 opisano w ogniskach D i G, a ST2021 w ognisku B. Trzeci typ zaliczony przez autorów do CC8, ST239, występował w ognisku C i nie jest widoczny na uzyskanym drzewie.
-
-### Liczba przypadków a liczba ognisk
 
 ST8 odpowiadał za największą liczbę przypadków w publikacji. Aż 187 z 204 przypadków przypisanych do ST8 pochodziło z jednego ogniska, G. Z kolei ST30 wystąpił w największej liczbie ognisk, bo aż w sześciu, ale łącznie obejmował 35 przypadków. Pokazuje to, że typ najczęstszy wśród przypadków może występować w mniejszej liczbie ognisk.
 
