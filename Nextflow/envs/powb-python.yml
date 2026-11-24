@@ -1,0 +1,11 @@
+name: powb-python
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.13.*
+  - polars=1.33.*
+  - biopython=1.85.*
+  - toytree=3.0.*
+  - packaging=25.0.*
+

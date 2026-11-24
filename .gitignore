@@ -1,1 +1,5 @@
 .snakemake/
+*.sif
+work/
+.nextflow/
+.nextflow.log*
