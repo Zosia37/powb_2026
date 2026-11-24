@@ -61,6 +61,25 @@ process mergeres {
         }
 }
 
+process mlst {
+    container "{projectDir}/images/powb-python.sif"
+    
+    input:
+        allelesdb: Path
+        mlstdb: Path
+        record( asmid: String, fout: Path)
+        
+    output:
+        record( asmid: asmid, mlout: file("mlst_${asmid}.tsv"))
+    script:
+        """ mlst.py --asmid ${asmid} \
+                    --allelesdb ${allelesdb} \
+                    --mlstdb ${mlstdb} \
+                    --alleles $fout
+                    --output mlst_${asmid}.tsv
+         """
+}
+
 workflow {
     main:
         def cols = 'qseqid qlen sseqid length qcovs pident evalue sseq'
@@ -80,8 +99,13 @@ workflow {
         }
         
         blout_ch = blastn(col_ch, in_ch).filter { rec -> rec.blout.size() > 0 }
-        fout_ch  = filtres(col_ch, cov_ch, blout_ch)
         
-        merge_ch = mergeres( fout_ch.collect().map{ it -> it.toList() } )
+        alleles_ch = channel.value(file(params.allelesdb))
+        mlstdb_ch = channel.value(file(params.mlstdb))        
+        
+        fout_ch  = filtres(col_ch, cov_ch, blout_ch)
+        mlout_ch = mlst(alleles_ch, mlstdb_ch, fout_ch)
+        
+        merge_ch = mergeres( mlout_ch.collect().map{ it -> it.toList() } )
 }
 
